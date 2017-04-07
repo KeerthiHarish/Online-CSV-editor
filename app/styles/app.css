@@ -1,0 +1,13 @@
+body {
+  text-align: center;
+}
+
+.uploadButton {
+  padding-left: 50px;
+}
+
+
+.danger {
+  color: red;
+  font-size: 13px;
+}

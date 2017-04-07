@@ -1,5 +1,32 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
-
-{{outlet}}
+<h2>CSV editor</h2>
+{{#unless fileUploaded}}
+  <a class="uploadButton">{{ file-upload header=header values=values fileUploaded=fileUploaded errorMessage=errorMessage}}</a>
+  {{#if errorMessage}}<p class="danger">{{errorMessage}}</p>{{/if}}
+{{else}}
+  <p>Click on any value to edit it</p>
+  <center>
+  <table>
+    <thead>
+      <tr>
+        {{#each header as |head|}}
+          <th style="padding: 5px 25px">{{head}}</th>
+        {{/each}}
+      </tr>
+    </thead>
+    <tbody>
+      {{#each values as |value outerIndex|}}
+        <tr>
+          {{#each value as |data innerIndex|}}
+            <td style="padding: 5px 25px">
+              {{ember-inline-edit value=data onSave=(action "savevalue" outerIndex innerIndex ) saveLabel='✓'}}
+            </td>
+          {{/each}}
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{#if displayDownload}}
+    <button {{action "downloadfile"}}> Download </button>
+  {{/if}}
+</center>
+{{/unless}}
