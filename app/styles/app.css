@@ -6,6 +6,9 @@ body {
   padding-left: 50px;
 }
 
+.tableCell {
+  padding: 5px 25px
+}
 
 .danger {
   color: red;
